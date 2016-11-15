@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/mainmenubg">
+
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:weightSum="20">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="13" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/newGameButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_border"
+                android:text="@string/new_game"
+                android:textColor="#ffffff"
+                android:layout_marginBottom="2dp"
+                android:onClick="startNewGame"/>
+
+
+            <Button
+                android:id="@+id/highScoresButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_border"
+                android:text="@string/high_scores"
+                android:textColor="#ffffff"
+                android:onClick="showHighScore"
+                android:layout_marginBottom="2dp"/>
+
+            <Button
+                android:id="@+id/exitGameButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_border"
+                android:onClick="exitButtonOnClick"
+                android:text="@string/exit_game"
+                android:textColor="#ffffff" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="4" />
+
+
+    </LinearLayout>
+</RelativeLayout>

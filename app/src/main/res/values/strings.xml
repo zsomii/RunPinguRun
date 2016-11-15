@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Run Pingu, Run!</string>
+
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="new_game">New Game</string>
+    <string name="high_scores">High scores</string>
+    <string name="exit_game">Exit game</string>
+    <string name="run_pingu_run">RUN PINGU, RUN!</string>
+    <string name="clearTop5">Clear Top 5</string>
+</resources>
