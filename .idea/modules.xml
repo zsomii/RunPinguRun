@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/RunPingu_Run.iml" filepath="$PROJECT_DIR$/RunPingu_Run.iml" />
+      <module fileurl="file://$PROJECT_DIR$/RunPinguRun.iml" filepath="$PROJECT_DIR$/RunPinguRun.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

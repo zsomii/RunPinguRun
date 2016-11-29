@@ -54,10 +54,10 @@ public abstract class GameObject implements Renderable {
         //4 states, 64*29 each image
 
         int x = 0;
-        int y = spriteHeight * statePos;
+        int y = 0;
 
         Rect src = new Rect(x, y, x + spriteWidth, y + spriteHeight);
-        Rect dst = new Rect(posX, posY, posX + spriteWidth * 4, posY + spriteHeight * 4);
+        Rect dst = new Rect(posX, posY, posX + spriteWidth, posY + spriteHeight);
 
         canvas.drawBitmap(image, src, dst, null);
     }

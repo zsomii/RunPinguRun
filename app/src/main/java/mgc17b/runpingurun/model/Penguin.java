@@ -13,13 +13,13 @@ public class Penguin extends GameObject {
     protected static final int SPRITE_VERTICAL = 4;
     private int maxLife = 3;
     private int life;
+    private int distanceFromBottom;
 
     public Penguin(Context context) {
         super(context);
-        image = BitmapFactory.decodeResource(context.getResources(), R.drawable.sliding_penguin);
-        Bitmap bMapScaled = Bitmap.createScaledBitmap(image, 50, 50, true);
-        image = bMapScaled;
-
+        image = BitmapFactory.decodeResource(context.getResources(), R.drawable.pingu);
+        Bitmap ground = BitmapFactory.decodeResource(context.getResources(), R.drawable.moving_ground);
+        distanceFromBottom = ground.getHeight();
         posX = 0;
         posY = screenHeight;
         life = maxLife;
@@ -29,7 +29,7 @@ public class Penguin extends GameObject {
     public void step() {
         super.step();
         posX = screenWidth / 10;
-        posY = screenHeight - 200;//(int)((elevation /10.0f)*(float)screenHeight);
+        posY = screenHeight - image.getHeight() - distanceFromBottom;//(int)((elevation /10.0f)*(float)screenHeight);
         if (posY > screenHeight) {
             posY = screenHeight;
         }

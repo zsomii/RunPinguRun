@@ -2,12 +2,19 @@ package mgc17b.runpingurun.rendering;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.view.Display;
+import android.view.WindowManager;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import mgc17b.runpingurun.model.Background2;
+import mgc17b.runpingurun.model.Background;
+import mgc17b.runpingurun.buttons.BackgroundMusic;
+import mgc17b.runpingurun.buttons.GameRunning;
+import mgc17b.runpingurun.buttons.Jump;
+import mgc17b.runpingurun.model.Gift;
+import mgc17b.runpingurun.model.MovingGround;
 import mgc17b.runpingurun.model.Penguin;
 import mgc17b.runpingurun.model.PolarBear;
 import mgc17b.runpingurun.model.Renderable;
@@ -24,17 +31,27 @@ public class Renderer {
 
     private List<Renderable> entitiesToDraw;
 
-    private Background2 bg;
-    private Background2 bg1;
-    private Background2 bg2;
+    private MovingGround ground;
+    private Background background;
     private Penguin penguin;
+    private Jump jump;
     private ScoreDisplay scoreDisplay;
-    private int screenSizeX;
-    private int screenSizeY;
+    private BackgroundMusic bgMusic;
+    private GameRunning gameRunning;
+    private int screenHeight;
+    private int screenWidth;
 
     public Renderer(Context context) {
         this.context = context;
-        init(0, 0);
+
+        WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+        Display display = wm.getDefaultDisplay();
+
+        screenWidth = display.getWidth();  // deprecated
+        screenHeight = display.getHeight();  // deprecated
+
+
+        init(screenWidth, screenHeight);
     }
 
 
@@ -44,8 +61,12 @@ public class Renderer {
         this.height = height;
         entitiesToDraw = new ArrayList<>();
 
-        bg1 = new Background2(context);
-        bg1.size(width, height);
+        background = new Background(context);
+        entitiesToDraw.add(background);
+
+        ground = new MovingGround(context);
+        ground.size(width, height);
+        entitiesToDraw.add(ground);
 
 
         penguin = new Penguin(context);
@@ -57,11 +78,17 @@ public class Renderer {
         PolarBear polarbear = new PolarBear(context);
         polarbear.size(width, height);
 
-
-        entitiesToDraw.add(polarbear);
-        entitiesToDraw.add(penguin);
+        gameRunning = new GameRunning(context);
 
         random = new Random();
+        jump = new Jump(context);
+        bgMusic = new BackgroundMusic(context);
+
+        entitiesToDraw.add(bgMusic);
+        entitiesToDraw.add(jump);
+        entitiesToDraw.add(polarbear);
+        entitiesToDraw.add(penguin);
+        entitiesToDraw.add(gameRunning);
     }
 
     public void step() {
@@ -71,9 +98,13 @@ public class Renderer {
             entitiesToDraw.add(polarbear);
         }
 
+        if (random.nextFloat() > (0.995)) {
+            Gift gift = new Gift(context);
+            gift.size(width, height);
+            entitiesToDraw.add(gift);
+        }
 
-        bg1.step();
-       // bg2.step();
+
 
         for (Renderable object : entitiesToDraw) {
             object.step();
@@ -82,11 +113,7 @@ public class Renderer {
 
     public void draw(Canvas canvas) {
 
-        bg1.render(canvas);
-        //bg2.render(canvas);
-
-
-        // bg2.render(canvas);
+        ground.render(canvas);
         for (Renderable object : entitiesToDraw) {
             object.render(canvas);
         }

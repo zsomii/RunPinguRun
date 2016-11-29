@@ -25,7 +25,16 @@ public class RenderLoop extends Thread {
     @Override
     public void run() {
         while (running) {
+            long renderStart = getTime();
             draw();
+
+            long renderEnd = getTime();
+            long sleepTime = timeBetweenFrames - (renderEnd - renderStart);
+            if (sleepTime > 0) {
+                sleepThread(sleepTime);
+            } else {
+                sleepThread(5);
+            }
         }
     }
 
@@ -48,4 +57,20 @@ public class RenderLoop extends Thread {
     public void setElevation(float elevation) {
         renderer.setElevation(elevation);
     }
+
+    public static final long FPS = 30;
+    private static final long timeBetweenFrames = 1000 / FPS;
+
+    private void sleepThread(long time) {
+        try {
+            sleep(time);
+        } catch (InterruptedException e) {
+        }
+    }
+
+    private long getTime() {
+        return System.currentTimeMillis();
+    }
+
+
 }

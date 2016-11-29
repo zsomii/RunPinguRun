@@ -16,7 +16,7 @@ public class Background implements Renderable {
     private final BitmapDrawable bitmapDrawable;
 
     public Background(Context context) {
-        Bitmap image = BitmapFactory.decodeResource(context.getResources(), R.drawable.back);
+        Bitmap image = BitmapFactory.decodeResource(context.getResources(), R.drawable.background);
         bitmapDrawable = new BitmapDrawable(image);
         bitmapDrawable.setTileModeX(Shader.TileMode.MIRROR);
         bitmapDrawable.setTileModeY(Shader.TileMode.MIRROR);
